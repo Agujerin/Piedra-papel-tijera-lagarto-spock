@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PPTLS</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+</head>
+<body>
+   <!-- PRÁCTICA 3: Piedra, papel o tijera -->
+    
+    <!-- Página principal -->
+    <!-- Este menú aparece cuando carga la página y desaparece cuando se envía el nombre del player1 -->
+    <div class="flex-container" id="main">
+        <div class="main">
+            <img src="img/piedra-logo.png" class="main__logo" alt="logo">
+            <img src="img/piedra-reglas.png" class="main__rules" alt="rules">
+            <form action="submit" class="form" id="form">
+                <input type="text" placeholder="Escriba su nombre" class="main__input">
+                <div>
+                    <button type="submit" class="main__btn">A ganador de 3</button>
+                    <button type="submit" class="main__btn">A ganador de 5</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Página del juego -->
+    <div class="game-container">
+        <div class="game-data-grid">
+            <h3 class="player-one" id="player-name"></h3>
+            <h2 class="player-one-score" id="player-score">0</h2>
+            <h2 class="cpu-score" id="cpu-score">0</h2>
+            <h3 class="cpu">CPU</h3>
+            <h4 class="round-title">Rondas a ganar:</h4>
+            <h4 class="rounds" id="rounds"></h4>
+        </div>
+        <div class="game-board-grid">
+            <div class="player-selected" id="player-plays"></div>
+            <div class="countdown" id="countdown"></div>
+            <div class="cpu-selected" id="cpu-plays"></div>
+            <h3 class="result start" id="start-btn">Comenzar</h3> 
+        </div>
+        <p class="options">SELECCIONE SU JUGADA (tiene 3 segundos)</p>
+        <div class="game-select-options" id="player-selection">
+            <img src="img/piedra.png" alt="piedra" id="piedra">
+            <img src="img/papel.png" alt="papel" id="papel">
+            <img src="img/tijera.png" alt="tijera" id="tijera">
+            <img src="img/lagarto.png" alt="lagarto" id="lagarto">
+            <img src="img/spock.png" alt="spock" id="spock">
+        </div>
+    </div> 
+    
+    <!-- Cartel ganador -->
+    <div class="flex-winner">
+        <div class="winner" id="winner">
+            <p class="winner-data" id="winner-data">Aguja ha ganado 3 a 1</p>
+            <i class="fas fa-redo reload" id="reload"></i>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
