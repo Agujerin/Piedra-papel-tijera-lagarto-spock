@@ -31,8 +31,9 @@ let cpuPoints = 0
 const userValidationAndStorage =(a,e)=>{
     if (a === "") e.target[0].setAttribute('placeholder',"DEBE INGESAR SU NOMBRE")
     else {
-        sessionStorage.clear()
-        sessionStorage.setItem('user',JSON.stringify(a))
+        
+        // sessionStorage.clear()
+        // sessionStorage.setItem('user',JSON.stringify(a))
         form.reset()
         main.classList.add('main-hide')
     }
@@ -186,8 +187,9 @@ form.addEventListener('submit',(e)=>{
     if (e.submitter.outerText == "A ganador de 3") rounds.textContent = 3  
     else rounds.textContent = 5
     
-   // Obtener el nombre del P1 y mostrarlo en pantalla
-    playerName.textContent = JSON.parse(sessionStorage.getItem('user'))    
+   // Obtener el nombre del P1 y mostrarlo en pantalla (sin usar el sessionStorage)
+    // playerName.textContent = JSON.parse(sessionStorage.getItem('user'))    
+    playerName.textContent = player    
 })
 
 //Dar comienzo a la partida
