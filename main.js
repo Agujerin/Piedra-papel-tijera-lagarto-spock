@@ -1,12 +1,5 @@
 "use strict"
 
-//PRÁCTICA 3: piedra, papel o tijera
-// -contra la máquina
-// -establecer número de rondas
-// -cuenta atrás de 3 segundos para elegir jugada
-// -se pueden usar imágenes
-// -cuando termina el juego se debe mostrar el ganador
-
 const form = document.getElementById('form')
 const main = document.getElementById('main')
 const playerName = document.getElementById('player-name')
@@ -28,17 +21,38 @@ let playerOp = ""
 let playerPoints = 0
 let cpuPoints = 0
 
-const userValidationAndStorage =(a,e)=>{
-    if (a === "") e.target[0].setAttribute('placeholder',"DEBE INGESAR SU NOMBRE")
+//validación de nombre del jugador
+const userValidationAndStorage =(player,e)=>{
+    if (player === "") e.target[0].setAttribute('placeholder',"DEBE INGESAR SU NOMBRE")
     else {
-        
-        // sessionStorage.clear()
-        // sessionStorage.setItem('user',JSON.stringify(a))
         form.reset()
         main.classList.add('main-hide')
     }
 }
 
+//Pantalla inicial selección de usuario y rondas
+form.addEventListener('submit',(e)=>{
+    e.preventDefault() 
+    let player = e.target[0].value
+    userValidationAndStorage(player,e)
+    
+   // seleccionar número de rondas
+    if (e.submitter.outerText == "A ganador de 3") rounds.textContent = 3  
+    else rounds.textContent = 5
+    
+   // Obtener el nombre del P1 y mostrarlo en pantalla    
+    playerName.textContent = player.toUpperCase()   
+})
+
+//Dar comienzo a la partida
+start.addEventListener('click',()=>{
+    start.textContent = "El juego ha comenzado"
+    start.classList.remove('start')
+    timer()
+})
+
+
+//juego
 const playerSelection =()=>{
     playerOptions.addEventListener('click',(e)=>{
         playerOp = e.target.id
@@ -134,17 +148,12 @@ const rounder =()=>{
     }
 }
 
-const winner =()=>{
-    winnerSign.classList.add('show-winner')
-    reloadBtn.addEventListener('click',()=> location.reload())
-}
-
 const roundResult =()=>{  
     rounder()
     if (playerPoints == rounds.textContent) {
         winnerData.textContent = `${playerName.textContent} ha ganado ${playerPoints} a ${cpuPoints}`
         winner()
-    }else if (cpuPoints == rounds.textContent) {
+    }else if (cpuPoints == rounds.textContent) {  
         winnerData.textContent = `${playerName.textContent} ha perdido ${cpuPoints} a ${playerPoints}`   
         winner()
     }else {
@@ -177,25 +186,7 @@ const timer =()=>{
     },1000);
 }
 
-//Pantalla inicial selección de usuario y rondas
-form.addEventListener('submit',(e)=>{
-    e.preventDefault() 
-    let player = e.target[0].value
-    userValidationAndStorage(player,e)
-    
-   // seleccionar número de rondas
-    if (e.submitter.outerText == "A ganador de 3") rounds.textContent = 3  
-    else rounds.textContent = 5
-    
-   // Obtener el nombre del P1 y mostrarlo en pantalla (sin usar el sessionStorage)
-    // playerName.textContent = JSON.parse(sessionStorage.getItem('user'))    
-    playerName.textContent = player    
-})
-
-//Dar comienzo a la partida
-start.addEventListener('click',()=>{
-    start.textContent = "El juego ha comenzado"
-    start.classList.remove('start')
-    timer()
-})
-
+const winner =()=>{
+    winnerSign.classList.add('show-winner')
+    reloadBtn.addEventListener('click',()=> location.reload())
+}
